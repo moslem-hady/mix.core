@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace Mix.Cms.Lib.ViewModels.MixAttributeSets
 {
     public class ReadViewModel
-      : ViewModelBase<MixCmsContext, MixAttributeSet, ReadViewModel>
+      : ViewModelBase<MixCmsContext, MixDatabase, ReadViewModel>
     {
         #region Properties
 
@@ -75,7 +75,7 @@ namespace Mix.Cms.Lib.ViewModels.MixAttributeSets
         {
         }
 
-        public ReadViewModel(MixAttributeSet model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        public ReadViewModel(MixDatabase model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
 

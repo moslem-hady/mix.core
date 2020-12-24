@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace Mix.Cms.Lib.ViewModels.MixCultures
 {
     public class UpdateViewModel
-      : ViewModelBase<MixCmsContext, MixCulture, UpdateViewModel>
+      : ViewModelBase<MixCmsContext, MixLanguage, UpdateViewModel>
     {
         #region Properties
 
@@ -70,7 +70,7 @@ namespace Mix.Cms.Lib.ViewModels.MixCultures
         {
         }
 
-        public UpdateViewModel(MixCulture model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        public UpdateViewModel(MixLanguage model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
 
@@ -78,7 +78,7 @@ namespace Mix.Cms.Lib.ViewModels.MixCultures
 
         #region Overrides
 
-        public override MixCulture ParseModel(MixCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override MixLanguage ParseModel(MixCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             if (Id == 0)
             {
@@ -110,7 +110,7 @@ namespace Mix.Cms.Lib.ViewModels.MixCultures
             return result;
         }
 
-        public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(MixCulture parent, MixCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(MixLanguage parent, MixCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
 
@@ -227,7 +227,7 @@ namespace Mix.Cms.Lib.ViewModels.MixCultures
             return result;
         }
 
-        public async Task<RepositoryResponse<bool>> CloneRelatedAttributeDatasAsync(MixCulture parent, MixCmsContext context, IDbContextTransaction transaction)
+        public async Task<RepositoryResponse<bool>> CloneRelatedAttributeDatasAsync(MixLanguage parent, MixCmsContext context, IDbContextTransaction transaction)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
             try
@@ -257,12 +257,12 @@ namespace Mix.Cms.Lib.ViewModels.MixCultures
             return result;
         }
         
-        public async Task<RepositoryResponse<bool>> CloneAttributeDatasAsync(MixCulture parent, MixCmsContext context, IDbContextTransaction transaction)
+        public async Task<RepositoryResponse<bool>> CloneAttributeDatasAsync(MixLanguage parent, MixCmsContext context, IDbContextTransaction transaction)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
             try
             {
-                var getPages = await DefaultModelRepository<MixCmsContext, MixAttributeSetData>.Instance.GetModelListByAsync(
+                var getPages = await DefaultModelRepository<MixCmsContext, MixDatabaseData>.Instance.GetModelListByAsync(
                     c => c.Specificulture == MixService.GetConfig<string>(MixConstants.ConfigurationKeyword.DefaultCulture));
                 if (getPages.IsSucceed)
                 {
@@ -287,12 +287,12 @@ namespace Mix.Cms.Lib.ViewModels.MixCultures
             return result;
         }
         
-        public async Task<RepositoryResponse<bool>> CloneAttributeValuesAsync(MixCulture parent, MixCmsContext context, IDbContextTransaction transaction)
+        public async Task<RepositoryResponse<bool>> CloneAttributeValuesAsync(MixLanguage parent, MixCmsContext context, IDbContextTransaction transaction)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
             try
             {
-                var getPages = await DefaultModelRepository<MixCmsContext, MixAttributeSetValue>.Instance.GetModelListByAsync(
+                var getPages = await DefaultModelRepository<MixCmsContext, MixDatabaseValue>.Instance.GetModelListByAsync(
                     c => c.Specificulture == MixService.GetConfig<string>(MixConstants.ConfigurationKeyword.DefaultCulture));
                 if (getPages.IsSucceed)
                 {
@@ -318,7 +318,7 @@ namespace Mix.Cms.Lib.ViewModels.MixCultures
             return result;
         }
 
-        public async Task<RepositoryResponse<bool>> CloneUrlAliasAsync(MixCulture parent, MixCmsContext context, IDbContextTransaction transaction)
+        public async Task<RepositoryResponse<bool>> CloneUrlAliasAsync(MixLanguage parent, MixCmsContext context, IDbContextTransaction transaction)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
             try
@@ -348,7 +348,7 @@ namespace Mix.Cms.Lib.ViewModels.MixCultures
             return result;
         }
 
-        public async Task<RepositoryResponse<bool>> CloneModulesAsync(MixCulture parent, MixCmsContext context, IDbContextTransaction transaction)
+        public async Task<RepositoryResponse<bool>> CloneModulesAsync(MixLanguage parent, MixCmsContext context, IDbContextTransaction transaction)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
             try
@@ -377,7 +377,7 @@ namespace Mix.Cms.Lib.ViewModels.MixCultures
             return result;
         }
 
-        public async Task<RepositoryResponse<bool>> CloneMediasAsync(MixCulture parent, MixCmsContext context, IDbContextTransaction transaction)
+        public async Task<RepositoryResponse<bool>> CloneMediasAsync(MixLanguage parent, MixCmsContext context, IDbContextTransaction transaction)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
             try
@@ -406,7 +406,7 @@ namespace Mix.Cms.Lib.ViewModels.MixCultures
             return result;
         }
 
-        public async Task<RepositoryResponse<bool>> ClonePostMediasAsync(MixCulture parent, MixCmsContext context, IDbContextTransaction transaction)
+        public async Task<RepositoryResponse<bool>> ClonePostMediasAsync(MixLanguage parent, MixCmsContext context, IDbContextTransaction transaction)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
             try
@@ -435,7 +435,7 @@ namespace Mix.Cms.Lib.ViewModels.MixCultures
             return result;
         }
 
-        public async Task<RepositoryResponse<bool>> ClonePostPostsAsync(MixCulture parent, MixCmsContext context, IDbContextTransaction transaction)
+        public async Task<RepositoryResponse<bool>> ClonePostPostsAsync(MixLanguage parent, MixCmsContext context, IDbContextTransaction transaction)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
             try
@@ -465,7 +465,7 @@ namespace Mix.Cms.Lib.ViewModels.MixCultures
             return result;
         }
 
-        public async Task<RepositoryResponse<bool>> CloneModulePostsAsync(MixCulture parent, MixCmsContext context, IDbContextTransaction transaction)
+        public async Task<RepositoryResponse<bool>> CloneModulePostsAsync(MixLanguage parent, MixCmsContext context, IDbContextTransaction transaction)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
             try
@@ -495,7 +495,7 @@ namespace Mix.Cms.Lib.ViewModels.MixCultures
             return result;
         }
 
-        public async Task<RepositoryResponse<bool>> ClonePagePostsAsync(MixCulture parent, MixCmsContext context, IDbContextTransaction transaction)
+        public async Task<RepositoryResponse<bool>> ClonePagePostsAsync(MixLanguage parent, MixCmsContext context, IDbContextTransaction transaction)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
             try
@@ -524,7 +524,7 @@ namespace Mix.Cms.Lib.ViewModels.MixCultures
             return result;
         }
 
-        public async Task<RepositoryResponse<bool>> ClonePageModulesAsync(MixCulture parent, MixCmsContext context, IDbContextTransaction transaction)
+        public async Task<RepositoryResponse<bool>> ClonePageModulesAsync(MixLanguage parent, MixCmsContext context, IDbContextTransaction transaction)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
             try
@@ -553,7 +553,7 @@ namespace Mix.Cms.Lib.ViewModels.MixCultures
             return result;
         }
 
-        public async Task<RepositoryResponse<bool>> ClonePostsAsync(MixCulture parent, MixCmsContext context, IDbContextTransaction transaction)
+        public async Task<RepositoryResponse<bool>> ClonePostsAsync(MixLanguage parent, MixCmsContext context, IDbContextTransaction transaction)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
             try
@@ -582,7 +582,7 @@ namespace Mix.Cms.Lib.ViewModels.MixCultures
             return result;
         }
 
-        public async Task<RepositoryResponse<bool>> CloneModuleDatasAsync(MixCulture parent, MixCmsContext context, IDbContextTransaction transaction)
+        public async Task<RepositoryResponse<bool>> CloneModuleDatasAsync(MixLanguage parent, MixCmsContext context, IDbContextTransaction transaction)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
             try
@@ -611,12 +611,12 @@ namespace Mix.Cms.Lib.ViewModels.MixCultures
             return result;
         }
 
-        public async Task<RepositoryResponse<bool>> CloneLanguagesAsync(MixCulture parent, MixCmsContext context, IDbContextTransaction transaction)
+        public async Task<RepositoryResponse<bool>> CloneLanguagesAsync(MixLanguage parent, MixCmsContext context, IDbContextTransaction transaction)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
             try
             {
-                var getPages = await DefaultModelRepository<MixCmsContext, MixLanguage>.Instance.GetModelListByAsync(
+                var getPages = await DefaultModelRepository<MixCmsContext, MixLocalize>.Instance.GetModelListByAsync(
                     c => c.Specificulture == MixService.GetConfig<string>(MixConstants.ConfigurationKeyword.DefaultCulture));
                 if (getPages.IsSucceed)
                 {
@@ -641,7 +641,7 @@ namespace Mix.Cms.Lib.ViewModels.MixCultures
             return result;
         }
 
-        public async Task<RepositoryResponse<bool>> CloneConfigurationsAsync(MixCulture parent, MixCmsContext context, IDbContextTransaction transaction)
+        public async Task<RepositoryResponse<bool>> CloneConfigurationsAsync(MixLanguage parent, MixCmsContext context, IDbContextTransaction transaction)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
             try
@@ -671,7 +671,7 @@ namespace Mix.Cms.Lib.ViewModels.MixCultures
             return result;
         }
 
-        public async Task<RepositoryResponse<bool>> ClonePagesAsync(MixCulture parent, MixCmsContext context, IDbContextTransaction transaction)
+        public async Task<RepositoryResponse<bool>> ClonePagesAsync(MixLanguage parent, MixCmsContext context, IDbContextTransaction transaction)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
             try
@@ -758,7 +758,7 @@ namespace Mix.Cms.Lib.ViewModels.MixCultures
             return result;
         }
 
-        public override async Task<RepositoryResponse<MixCulture>> RemoveModelAsync(bool isRemoveRelatedModels = false, MixCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override async Task<RepositoryResponse<MixLanguage>> RemoveModelAsync(bool isRemoveRelatedModels = false, MixCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var result = await base.RemoveModelAsync(isRemoveRelatedModels, _context, _transaction);
             if (result.IsSucceed)

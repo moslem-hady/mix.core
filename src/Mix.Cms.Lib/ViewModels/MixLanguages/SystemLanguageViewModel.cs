@@ -15,7 +15,7 @@ using static Mix.Cms.Lib.MixEnums;
 namespace Mix.Cms.Lib.ViewModels.MixLanguages
 {
     public class SystemLanguageViewModel
-        : ViewModelBase<MixCmsContext, MixLanguage, SystemLanguageViewModel>
+        : ViewModelBase<MixCmsContext, MixLocalize, SystemLanguageViewModel>
     {
         #region Properties
 
@@ -70,7 +70,7 @@ namespace Mix.Cms.Lib.ViewModels.MixLanguages
         {
         }
 
-        public SystemLanguageViewModel(MixLanguage model, MixCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public SystemLanguageViewModel(MixLocalize model, MixCmsContext _context = null, IDbContextTransaction _transaction = null)
             : base(model, _context, _transaction)
         {
         }
@@ -83,7 +83,7 @@ namespace Mix.Cms.Lib.ViewModels.MixLanguages
 
         #region Expands
 
-        public static async Task<RepositoryResponse<bool>> ImportLanguages(List<MixLanguage> arrLanguage, string destCulture)
+        public static async Task<RepositoryResponse<bool>> ImportLanguages(List<MixLocalize> arrLanguage, string destCulture)
         {
             UnitOfWorkHelper<MixCmsContext>.InitTransaction(null, null, out MixCmsContext context, out IDbContextTransaction transaction, out bool isRoot);
 

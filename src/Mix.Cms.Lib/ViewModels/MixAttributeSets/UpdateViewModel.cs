@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Mix.Cms.Lib.ViewModels.MixAttributeSets
 {
     public class UpdateViewModel
-      : ViewModelBase<MixCmsContext, MixAttributeSet, UpdateViewModel>
+      : ViewModelBase<MixCmsContext, MixDatabase, UpdateViewModel>
     {
         #region Properties
 
@@ -89,7 +89,7 @@ namespace Mix.Cms.Lib.ViewModels.MixAttributeSets
         {
         }
 
-        public UpdateViewModel(MixAttributeSet model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        public UpdateViewModel(MixDatabase model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
 
@@ -113,7 +113,7 @@ namespace Mix.Cms.Lib.ViewModels.MixAttributeSets
             }
         }
 
-        public override MixAttributeSet ParseModel(MixCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override MixDatabase ParseModel(MixCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             if (Id == 0)
             {
@@ -138,7 +138,7 @@ namespace Mix.Cms.Lib.ViewModels.MixAttributeSets
             }
         }
 
-        public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(MixAttributeSet parent, MixCmsContext _context, IDbContextTransaction _transaction)
+        public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(MixDatabase parent, MixCmsContext _context, IDbContextTransaction _transaction)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
             if (result.IsSucceed)
@@ -176,7 +176,7 @@ namespace Mix.Cms.Lib.ViewModels.MixAttributeSets
             return result;
         }
 
-        public override RepositoryResponse<bool> SaveSubModels(MixAttributeSet parent, MixCmsContext _context, IDbContextTransaction _transaction)
+        public override RepositoryResponse<bool> SaveSubModels(MixDatabase parent, MixCmsContext _context, IDbContextTransaction _transaction)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
             if (result.IsSucceed)

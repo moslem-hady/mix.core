@@ -13,7 +13,7 @@ using System.Collections.Generic;
 namespace Mix.Cms.Lib.ViewModels.Account
 {
     public class UserInfoViewModel
-        : ViewModelBase<MixCmsContext, MixCmsUser, UserInfoViewModel>
+        : ViewModelBase<MixCmsContext, MixUser, UserInfoViewModel>
     {
         #region Properties
 
@@ -112,7 +112,7 @@ namespace Mix.Cms.Lib.ViewModels.Account
         {
         }
 
-        public UserInfoViewModel(MixCmsUser model, MixCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public UserInfoViewModel(MixUser model, MixCmsContext _context = null, IDbContextTransaction _transaction = null)
             : base(model, _context, _transaction)
         {
         }
@@ -121,7 +121,7 @@ namespace Mix.Cms.Lib.ViewModels.Account
 
         #region Overrides
 
-        public override MixCmsUser ParseModel(MixCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override MixUser ParseModel(MixCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             if (MediaFile.FileStream != null)
             {

@@ -9,7 +9,7 @@ namespace Mix.Cms.Lib.Models.Cms
     public partial class MixCmsContext : DbContext
     {
         public virtual DbSet<MixAttributeField> MixAttributeField { get; set; }
-        public virtual DbSet<MixAttributeSet> MixAttributeSet { get; set; }
+        public virtual DbSet<MixDatabase> MixAttributeSet { get; set; }
         public virtual DbSet<MixAttributeSetData> MixAttributeSetData { get; set; }
         public virtual DbSet<MixAttributeSetReference> MixAttributeSetReference { get; set; }
         public virtual DbSet<MixAttributeSetValue> MixAttributeSetValue { get; set; }
@@ -178,7 +178,7 @@ namespace Mix.Cms.Lib.Models.Cms
                     .HasConstraintName("FK_mix_attribute_field_mix_attribute_set1");
             });
 
-            modelBuilder.Entity<MixAttributeSet>(entity =>
+            modelBuilder.Entity<MixDatabase>(entity =>
             {
                 entity.ToTable("mix_attribute_set");
 

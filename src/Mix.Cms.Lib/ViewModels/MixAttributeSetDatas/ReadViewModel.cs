@@ -9,7 +9,7 @@ using System.Linq;
 namespace Mix.Cms.Lib.ViewModels.MixAttributeSetDatas
 {
     public class ReadViewModel
-      : ViewModelBase<MixCmsContext, MixAttributeSetData, ReadViewModel>
+      : ViewModelBase<MixCmsContext, MixDatabaseData, ReadViewModel>
     {
         #region Properties
 
@@ -59,7 +59,7 @@ namespace Mix.Cms.Lib.ViewModels.MixAttributeSetDatas
         {
         }
 
-        public ReadViewModel(MixAttributeSetData model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        public ReadViewModel(MixDatabaseData model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
 
@@ -87,7 +87,7 @@ namespace Mix.Cms.Lib.ViewModels.MixAttributeSetDatas
                 if (val == null)
                 {
                     val = new MixAttributeSetValues.ReadViewModel(
-                        new MixAttributeSetValue() { AttributeFieldId = field.Id }
+                        new MixDatabaseValue() { AttributeFieldId = field.Id }
                         , _context, _transaction)
                     {
                         Field = field,

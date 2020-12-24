@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Mix.Cms.Lib.ViewModels.MixCultures
 {
     public class SystemCultureViewModel
-        : ViewModelBase<MixCmsContext, MixCulture, SystemCultureViewModel>
+        : ViewModelBase<MixCmsContext, MixLanguage, SystemCultureViewModel>
     {
         #region Properties
 
@@ -60,7 +60,7 @@ namespace Mix.Cms.Lib.ViewModels.MixCultures
         {
         }
 
-        public SystemCultureViewModel(MixCulture model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        public SystemCultureViewModel(MixLanguage model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
 

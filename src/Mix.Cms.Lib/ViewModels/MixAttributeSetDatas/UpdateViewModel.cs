@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace Mix.Cms.Lib.ViewModels.MixAttributeSetDatas
 {
     public class UpdateViewModel
-      : ViewModelBase<MixCmsContext, MixAttributeSetData, UpdateViewModel>
+      : ViewModelBase<MixCmsContext, MixDatabaseData, UpdateViewModel>
     {
         #region Properties
 
@@ -77,7 +77,7 @@ namespace Mix.Cms.Lib.ViewModels.MixAttributeSetDatas
         {
         }
 
-        public UpdateViewModel(MixAttributeSetData model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        public UpdateViewModel(MixDatabaseData model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
 
@@ -123,7 +123,7 @@ namespace Mix.Cms.Lib.ViewModels.MixAttributeSetDatas
             }
         }
 
-        public override MixAttributeSetData ParseModel(MixCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override MixDatabaseData ParseModel(MixCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             if (string.IsNullOrEmpty(Id))
             {
@@ -180,7 +180,7 @@ namespace Mix.Cms.Lib.ViewModels.MixAttributeSetDatas
             }
         }
 
-        public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(MixAttributeSetData parent, MixCmsContext _context, IDbContextTransaction _transaction)
+        public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(MixDatabaseData parent, MixCmsContext _context, IDbContextTransaction _transaction)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
             if (result.IsSucceed)
@@ -224,7 +224,7 @@ namespace Mix.Cms.Lib.ViewModels.MixAttributeSetDatas
             return result;
         }
 
-        public override RepositoryResponse<bool> SaveSubModels(MixAttributeSetData parent, MixCmsContext _context, IDbContextTransaction _transaction)
+        public override RepositoryResponse<bool> SaveSubModels(MixDatabaseData parent, MixCmsContext _context, IDbContextTransaction _transaction)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
             if (result.IsSucceed)
@@ -253,7 +253,7 @@ namespace Mix.Cms.Lib.ViewModels.MixAttributeSetDatas
         #endregion Overrides
 
         #region Expand
-        private async Task<RepositoryResponse<bool>> SaveRelatedDataAsync(MixAttributeSetData parent, MixCmsContext context, IDbContextTransaction transaction)
+        private async Task<RepositoryResponse<bool>> SaveRelatedDataAsync(MixDatabaseData parent, MixCmsContext context, IDbContextTransaction transaction)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
 

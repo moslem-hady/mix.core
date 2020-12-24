@@ -7,7 +7,7 @@ using System;
 namespace Mix.Cms.Lib.ViewModels.MixAttributeSetValues
 {
     public class ReadViewModel
-      : ViewModelBase<MixCmsContext, MixAttributeSetValue, ReadViewModel>
+      : ViewModelBase<MixCmsContext, MixDatabaseValue, ReadViewModel>
     {
         #region Properties
 
@@ -88,7 +88,7 @@ namespace Mix.Cms.Lib.ViewModels.MixAttributeSetValues
             IsCache = false;
         }
 
-        public ReadViewModel(MixAttributeSetValue model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        public ReadViewModel(MixDatabaseValue model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
             IsCache = false;
         }

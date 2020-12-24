@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using static Mix.Cms.Lib.MixEnums;
 
 namespace Mix.Cms.Lib.Models.Cms
 {
-    public partial class MixConfiguration
+    public partial class MixLanguage
     {
         public int Id { get; set; }
         public string Specificulture { get; set; }
@@ -13,6 +12,7 @@ namespace Mix.Cms.Lib.Models.Cms
         public MixDataType DataType { get; set; }
         public string Description { get; set; }
         public string Value { get; set; }
+        public string DefaultValue { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public string ModifiedBy { get; set; }
@@ -20,6 +20,6 @@ namespace Mix.Cms.Lib.Models.Cms
         public int Priority { get; set; }
         public MixEnums.MixContentStatus Status { get; set; }
 
-        public virtual MixLanguage SpecificultureNavigation { get; set; }
+        public virtual MixCulture SpecificultureNavigation { get; set; }
     }
 }

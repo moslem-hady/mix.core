@@ -152,7 +152,7 @@ namespace Mix.Cms.Lib.Models.Cms
                     .HasConstraintName("FK_mix_attribute_field_mix_attribute_set1");
             });
 
-            modelBuilder.Entity<MixAttributeSet>(entity =>
+            modelBuilder.Entity<MixDatabase>(entity =>
             {
                 entity.ToTable("mix_attribute_set");
 

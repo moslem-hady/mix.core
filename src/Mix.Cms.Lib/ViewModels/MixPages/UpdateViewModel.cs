@@ -493,7 +493,7 @@ namespace Mix.Cms.Lib.ViewModels.MixPages
                         )
                     {
                         Data = new MixAttributeSetDatas.UpdateViewModel(
-                    new MixAttributeSetData()
+                    new MixDatabaseData()
                     {
                         Specificulture = Specificulture,
                         AttributeSetId = AttributeSet.Id,

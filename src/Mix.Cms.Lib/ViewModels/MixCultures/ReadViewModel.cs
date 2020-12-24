@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace Mix.Cms.Lib.ViewModels.MixCultures
 {
     public class ReadViewModel
-      : ViewModelBase<MixCmsContext, MixCulture, ReadViewModel>
+      : ViewModelBase<MixCmsContext, MixLanguage, ReadViewModel>
     {
         #region Properties
 
@@ -64,7 +64,7 @@ namespace Mix.Cms.Lib.ViewModels.MixCultures
         {
         }
 
-        public ReadViewModel(MixCulture model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        public ReadViewModel(MixLanguage model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
 

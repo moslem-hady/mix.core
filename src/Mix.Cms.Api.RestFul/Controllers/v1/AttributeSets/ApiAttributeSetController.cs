@@ -17,7 +17,7 @@ namespace Mix.Cms.Api.RestFul.Controllers.v1
     [Produces("application/json")]
     [Route("api/v1/rest/attribute-set/client")]
     public class ApiAttributeSetController :
-        BaseRestApiController<MixCmsContext, MixAttributeSet, UpdateViewModel, ReadViewModel, UpdateViewModel>
+        BaseRestApiController<MixCmsContext, MixDatabase, UpdateViewModel, ReadViewModel, UpdateViewModel>
     {
 
         // GET: api/v1/rest/en-us/attribute-set/client
@@ -28,7 +28,7 @@ namespace Mix.Cms.Api.RestFul.Controllers.v1
             bool isFromDate = DateTime.TryParse(Request.Query["fromDate"], out DateTime fromDate);
             bool isToDate = DateTime.TryParse(Request.Query["toDate"], out DateTime toDate);
             string keyword = Request.Query["keyword"];
-            Expression<Func<MixAttributeSet, bool>> predicate = model =>
+            Expression<Func<MixDatabase, bool>> predicate = model =>
                 (!isStatus || model.Status == status)
                 && (!isFromDate || model.CreatedDateTime >= fromDate)
                 && (!isToDate || model.CreatedDateTime <= toDate)

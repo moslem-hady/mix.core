@@ -11,7 +11,7 @@ using System.Linq;
 namespace Mix.Cms.Service.SignalR.ViewModels.MixAttributeSetDatas
 {
     public class ReadViewModel
-      : ViewModelBase<MixCmsContext, MixAttributeSetData, ReadViewModel>
+      : ViewModelBase<MixCmsContext, MixDatabaseData, ReadViewModel>
     {
         #region Properties
 
@@ -71,7 +71,7 @@ namespace Mix.Cms.Service.SignalR.ViewModels.MixAttributeSetDatas
         {
         }
 
-        public ReadViewModel(MixAttributeSetData model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        public ReadViewModel(MixDatabaseData model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
 
@@ -118,7 +118,7 @@ namespace Mix.Cms.Service.SignalR.ViewModels.MixAttributeSetDatas
                 if (val == null)
                 {
                     val = new Lib.ViewModels.MixAttributeSetValues.UpdateViewModel(
-                        new MixAttributeSetValue()
+                        new MixDatabaseValue()
                         {
                             AttributeFieldId = field.Id,
                             AttributeFieldName = field.Name,

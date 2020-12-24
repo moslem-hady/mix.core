@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Mix.Cms.Lib.Models.Cms
 {
-    public partial class MixCmsUser
+    public partial class MixUser
     {
         public string Id { get; set; }
         public string Address { get; set; }

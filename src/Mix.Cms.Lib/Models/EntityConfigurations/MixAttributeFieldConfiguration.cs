@@ -5,9 +5,9 @@ using Mix.Cms.Lib.Models.Cms;
 
 namespace Mix.Cms.Lib.Models.EntityConfigurations
 {
-    public class MixAttributeFieldConfiguration : IEntityTypeConfiguration<MixAttributeField>
+    public class MixAttributeFieldConfiguration : IEntityTypeConfiguration<MixDatabaseColumn>
     {
-        public void Configure(EntityTypeBuilder<MixAttributeField> builder)
+        public void Configure(EntityTypeBuilder<MixDatabaseColumn> builder)
         {
             builder
            .Property(e => e.DataType)

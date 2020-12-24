@@ -17,7 +17,7 @@ namespace Mix.Cms.Api.RestFul.Controllers.v1
     [Produces("application/json")]
     [Route("api/v1/rest/attribute-field/portal")]
     public class ApiAttributeFieldController :
-        BaseRestApiController<MixCmsContext, MixAttributeField, UpdateViewModel, ReadViewModel, DeleteViewModel>
+        BaseRestApiController<MixCmsContext, MixDatabaseColumn, UpdateViewModel, ReadViewModel, DeleteViewModel>
     {
 
         // GET: api/v1/rest/en-us/attribute-field/client
@@ -28,7 +28,7 @@ namespace Mix.Cms.Api.RestFul.Controllers.v1
             bool isFromDate = DateTime.TryParse(Request.Query["fromDate"], out DateTime fromDate);
             bool isToDate = DateTime.TryParse(Request.Query["toDate"], out DateTime toDate);
             string keyword = Request.Query["keyword"];
-            Expression<Func<MixAttributeField, bool>> predicate = model =>
+            Expression<Func<MixDatabaseColumn, bool>> predicate = model =>
                 (!isStatus || model.Status == status)
                 && (!isFromDate || model.CreatedDateTime >= fromDate)
                 && (!isToDate || model.CreatedDateTime <= toDate)

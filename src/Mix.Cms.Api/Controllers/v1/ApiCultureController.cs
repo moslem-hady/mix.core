@@ -23,7 +23,7 @@ namespace Mix.Cms.Api.Controllers.v1
     [Route("api/v1/culture")]
     [Route("api/v1/{culture}/culture")]
     public class ApiCultureController :
-        BaseGenericApiController<MixCmsContext, MixCulture>
+        BaseGenericApiController<MixCmsContext, MixLanguage>
     {
         public ApiCultureController(MixCmsContext context, IMemoryCache memoryCache, Microsoft.AspNetCore.SignalR.IHubContext<Mix.Cms.Service.SignalR.Hubs.PortalHub> hubContext) : base(context, memoryCache, hubContext)
         {
@@ -34,7 +34,7 @@ namespace Mix.Cms.Api.Controllers.v1
         // GET api/culture/id
         [HttpGet, HttpOptions]
         [Route("delete/{id}")]
-        public async Task<RepositoryResponse<MixCulture>> DeleteAsync(int id)
+        public async Task<RepositoryResponse<MixLanguage>> DeleteAsync(int id)
         {
             var result = await base.DeleteAsync<UpdateViewModel>(
                 model => model.Id == id, true);
@@ -57,13 +57,13 @@ namespace Mix.Cms.Api.Controllers.v1
                 case "portal":
                     if (id.HasValue)
                     {
-                        Expression<Func<MixCulture, bool>> predicate = model => model.Id == id;
+                        Expression<Func<MixLanguage, bool>> predicate = model => model.Id == id;
                         var portalResult = await base.GetSingleAsync<UpdateViewModel>($"{viewType}_{id}", predicate);
                         return Ok(JObject.FromObject(portalResult));
                     }
                     else
                     {
-                        var model = new MixCulture()
+                        var model = new MixLanguage()
                         {
                             Status = MixService.GetConfig<MixEnums.MixContentStatus>(MixConstants.ConfigurationKeyword.DefaultContentStatus)
                             ,
@@ -76,13 +76,13 @@ namespace Mix.Cms.Api.Controllers.v1
                 default:
                     if (id.HasValue)
                     {
-                        Expression<Func<MixCulture, bool>> predicate = model => model.Id == id;
+                        Expression<Func<MixLanguage, bool>> predicate = model => model.Id == id;
                         var portalResult = await base.GetSingleAsync<ReadViewModel>($"{viewType}_{id}", predicate);
                         return Ok(JObject.FromObject(portalResult));
                     }
                     else
                     {
-                        var model = new MixCulture()
+                        var model = new MixLanguage()
                         {
                             Status = MixService.GetConfig<MixEnums.MixContentStatus>(MixConstants.ConfigurationKeyword.DefaultContentStatus)
                             ,
@@ -126,7 +126,7 @@ namespace Mix.Cms.Api.Controllers.v1
             [FromBody] RequestPaging request)
         {
             ParseRequestPagingDate(request);
-            Expression<Func<MixCulture, bool>> predicate = model =>
+            Expression<Func<MixLanguage, bool>> predicate = model =>
                         (string.IsNullOrEmpty(request.Status) || model.Status == Enum.Parse<MixEnums.MixContentStatus>(request.Status))
                         && (string.IsNullOrWhiteSpace(request.Keyword)
                             || (model.FullName.Contains(request.Keyword))

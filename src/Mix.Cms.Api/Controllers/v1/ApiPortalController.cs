@@ -498,7 +498,7 @@ namespace Mix.Cms.Api.Controllers.v1
                 switch (obj["type"].Value<string>())
                 {
                     case "Language":
-                        var arrLanguage = obj["data"].ToObject<List<MixLanguage>>();
+                        var arrLanguage = obj["data"].ToObject<List<MixLocalize>>();
                         result = await Lib.ViewModels.MixLanguages.UpdateViewModel.ImportLanguages(arrLanguage, _lang);
                         if (result.IsSucceed)
                         {

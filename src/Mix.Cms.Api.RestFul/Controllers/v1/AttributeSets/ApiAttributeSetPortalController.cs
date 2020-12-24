@@ -20,7 +20,7 @@ namespace Mix.Cms.Api.RestFul.Controllers.v1
     [Produces("application/json")]
     [Route("api/v1/rest/attribute-set/portal")]
     public class ApiAttributeSetPortalController :
-        BaseRestApiController<MixCmsContext, MixAttributeSet, UpdateViewModel, ReadViewModel, UpdateViewModel>
+        BaseRestApiController<MixCmsContext, MixDatabase, UpdateViewModel, ReadViewModel, UpdateViewModel>
     {
 
         // GET: api/v1/rest/en-us/attribute-set/portal
@@ -32,7 +32,7 @@ namespace Mix.Cms.Api.RestFul.Controllers.v1
             bool isFromDate = DateTime.TryParse(Request.Query["fromDate"], out DateTime fromDate);
             bool isToDate = DateTime.TryParse(Request.Query["toDate"], out DateTime toDate);
             string keyword = Request.Query["keyword"];
-            Expression<Func<MixAttributeSet, bool>> predicate = model =>
+            Expression<Func<MixDatabase, bool>> predicate = model =>
                 (!isStatus || model.Status == status)
                 && (!isType || model.Type == type.ToString())
                 && (!isFromDate || model.CreatedDateTime >= fromDate)
@@ -54,7 +54,7 @@ namespace Mix.Cms.Api.RestFul.Controllers.v1
 
         // DELETE: api/v1/rest/en-us/attribute-set/portal/5
         [HttpDelete("{id}")]
-        public override async Task<ActionResult<MixAttributeSet>> Delete(string id)
+        public override async Task<ActionResult<MixDatabase>> Delete(string id)
         {
             var getData = await DeleteViewModel.Repository.GetSingleModelAsync(m => m.Id == int.Parse(id));
 

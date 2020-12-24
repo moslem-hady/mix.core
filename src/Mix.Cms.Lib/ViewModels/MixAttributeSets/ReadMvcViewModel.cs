@@ -11,7 +11,7 @@ using System.Linq;
 namespace Mix.Cms.Lib.ViewModels.MixAttributeSets
 {
     public class ReadMvcViewModel
-      : ViewModelBase<MixCmsContext, MixAttributeSet, ReadMvcViewModel>
+      : ViewModelBase<MixCmsContext, MixDatabase, ReadMvcViewModel>
     {
         #region Properties
 
@@ -79,7 +79,7 @@ namespace Mix.Cms.Lib.ViewModels.MixAttributeSets
         {
         }
 
-        public ReadMvcViewModel(MixAttributeSet model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        public ReadMvcViewModel(MixDatabase model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
 

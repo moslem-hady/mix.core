@@ -14,7 +14,7 @@ using System.Linq;
 
 namespace Mix.Cms.Lib.ViewModels.Account.MixUsers
 {
-    public class UpdateViewModel : ViewModelBase<MixCmsContext, MixCmsUser, UpdateViewModel>
+    public class UpdateViewModel : ViewModelBase<MixCmsContext, MixUser, UpdateViewModel>
     {
         #region Properties
 
@@ -113,7 +113,7 @@ namespace Mix.Cms.Lib.ViewModels.Account.MixUsers
         {
         }
 
-        public UpdateViewModel(MixCmsUser model, MixCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public UpdateViewModel(MixUser model, MixCmsContext _context = null, IDbContextTransaction _transaction = null)
             : base(model, _context, _transaction)
         {
         }
@@ -122,7 +122,7 @@ namespace Mix.Cms.Lib.ViewModels.Account.MixUsers
 
         #region Overrides
 
-        public override MixCmsUser ParseModel(MixCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override MixUser ParseModel(MixCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             if (MediaFile.FileStream != null)
             {

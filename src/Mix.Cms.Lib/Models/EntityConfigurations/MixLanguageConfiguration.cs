@@ -5,9 +5,9 @@ using Mix.Cms.Lib.Models.Cms;
 
 namespace Mix.Cms.Lib.Models.EntityConfigurations
 {
-    public class MixLanguageConfiguration : IEntityTypeConfiguration<MixLanguage>
+    public class MixLanguageConfiguration : IEntityTypeConfiguration<MixLocalize>
     {
-        public void Configure(EntityTypeBuilder<MixLanguage> builder)
+        public void Configure(EntityTypeBuilder<MixLocalize> builder)
         {
             builder
            .Property(e => e.DataType)

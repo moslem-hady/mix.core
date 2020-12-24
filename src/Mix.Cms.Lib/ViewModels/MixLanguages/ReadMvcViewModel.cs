@@ -14,7 +14,7 @@ using static Mix.Cms.Lib.MixEnums;
 namespace Mix.Cms.Lib.ViewModels.MixLanguages
 {
     public class ReadMvcViewModel
-       : ViewModelBase<MixCmsContext, MixLanguage, ReadMvcViewModel>
+       : ViewModelBase<MixCmsContext, MixLocalize, ReadMvcViewModel>
     {
         #region Properties
 
@@ -76,7 +76,7 @@ namespace Mix.Cms.Lib.ViewModels.MixLanguages
         {
         }
 
-        public ReadMvcViewModel(MixLanguage model, MixCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public ReadMvcViewModel(MixLocalize model, MixCmsContext _context = null, IDbContextTransaction _transaction = null)
             : base(model, _context, _transaction)
         {
         }

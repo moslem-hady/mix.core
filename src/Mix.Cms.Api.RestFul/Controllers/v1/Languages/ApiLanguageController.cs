@@ -17,7 +17,7 @@ namespace Mix.Cms.Api.RestFul.Controllers.v1
     [Produces("application/json")]
     [Route("api/v1/rest/{culture}/language")]
     public class ApiLanguageController :
-        BaseRestApiController<MixCmsContext, MixLanguage, UpdateViewModel, ReadMvcViewModel, UpdateViewModel>
+        BaseRestApiController<MixCmsContext, MixLocalize, UpdateViewModel, ReadMvcViewModel, UpdateViewModel>
     {
 
         // GET: api/s
@@ -28,7 +28,7 @@ namespace Mix.Cms.Api.RestFul.Controllers.v1
             bool isFromDate = DateTime.TryParse(Request.Query["fromDate"], out DateTime fromDate);
             bool isToDate = DateTime.TryParse(Request.Query["toDate"], out DateTime toDate);
             string keyword = Request.Query["keyword"];
-            Expression<Func<MixLanguage, bool>> predicate = model =>
+            Expression<Func<MixLocalize, bool>> predicate = model =>
                 model.Specificulture == _lang
                 && (!isStatus || model.Status == status)
                 && (!isFromDate || model.CreatedDateTime >= fromDate)

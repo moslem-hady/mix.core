@@ -349,7 +349,7 @@ namespace Mix.Cms.Lib.Services
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
-                var error = UnitOfWorkHelper<MixCmsContext>.HandleException<MixLanguage>(ex, isRoot, transaction);
+                var error = UnitOfWorkHelper<MixCmsContext>.HandleException<MixLocalize>(ex, isRoot, transaction);
             }
             finally
             {

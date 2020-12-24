@@ -18,6 +18,6 @@ namespace Mix.Cms.Lib.Models.Cms
         public int Priority { get; set; }
         public MixEnums.MixContentStatus Status { get; set; }
 
-        public virtual MixCulture SpecificultureNavigation { get; set; }
+        public virtual MixLanguage SpecificultureNavigation { get; set; }
     }
 }

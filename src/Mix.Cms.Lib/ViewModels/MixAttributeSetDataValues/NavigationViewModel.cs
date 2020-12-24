@@ -9,7 +9,7 @@ using System.Linq;
 namespace Mix.Cms.Lib.ViewModels.MixAttributeSetValues
 {
     public class NavigationViewModel
-      : ViewModelBase<MixCmsContext, MixAttributeSetValue, NavigationViewModel>
+      : ViewModelBase<MixCmsContext, MixDatabaseValue, NavigationViewModel>
     {
         #region Properties
 
@@ -94,7 +94,7 @@ namespace Mix.Cms.Lib.ViewModels.MixAttributeSetValues
             //Repository.IsCache = false;
         }
 
-        public NavigationViewModel(MixAttributeSetValue model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        public NavigationViewModel(MixDatabaseValue model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
             //IsCache = false;
             //Repository.IsCache = false;
@@ -116,7 +116,7 @@ namespace Mix.Cms.Lib.ViewModels.MixAttributeSetValues
             Field = MixAttributeFields.ReadViewModel.Repository.GetSingleModel(f => f.Id == AttributeFieldId, _context, _transaction).Data;
         }
 
-        public override MixAttributeSetValue ParseModel(MixCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override MixDatabaseValue ParseModel(MixCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             if (string.IsNullOrEmpty(Id))
             {

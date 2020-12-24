@@ -297,7 +297,7 @@ namespace Mix.Cms.Api.Controllers.v1
                     }
                     else
                     {
-                        var model = new MixCmsUser() { Status = MixUserStatus.Actived.ToString() };
+                        var model = new MixUser() { Status = MixUserStatus.Actived.ToString() };
 
                         RepositoryResponse<Lib.ViewModels.Account.MixUsers.UpdateViewModel> result = new RepositoryResponse<Lib.ViewModels.Account.MixUsers.UpdateViewModel>()
                         {
@@ -315,7 +315,7 @@ namespace Mix.Cms.Api.Controllers.v1
                     }
                     else
                     {
-                        var model = new MixCmsUser() { Status = MixUserStatus.Actived.ToString() };
+                        var model = new MixUser() { Status = MixUserStatus.Actived.ToString() };
 
                         RepositoryResponse<UserInfoViewModel> result = new RepositoryResponse<UserInfoViewModel>()
                         {
@@ -397,7 +397,7 @@ namespace Mix.Cms.Api.Controllers.v1
         [Route("list")]
         public async Task<RepositoryResponse<PaginationModel<UserInfoViewModel>>> GetList(RequestPaging request)
         {
-            Expression<Func<MixCmsUser, bool>> predicate = model =>
+            Expression<Func<MixUser, bool>> predicate = model =>
                 (string.IsNullOrEmpty(request.Status) || model.Status == request.Status)
                 && (string.IsNullOrWhiteSpace(request.Keyword)
                 || (

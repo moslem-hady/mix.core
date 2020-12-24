@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 namespace Mix.Cms.Lib.ViewModels.MixAttributeSetValues
 {
     public class UpdateViewModel
-      : ViewModelBase<MixCmsContext, MixAttributeSetValue, UpdateViewModel>
+      : ViewModelBase<MixCmsContext, MixDatabaseValue, UpdateViewModel>
     {
         #region Properties
 
@@ -91,7 +91,7 @@ namespace Mix.Cms.Lib.ViewModels.MixAttributeSetValues
             //IsCache = false;
         }
 
-        public UpdateViewModel(MixAttributeSetValue model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        public UpdateViewModel(MixDatabaseValue model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
             //IsCache = false;
         }
@@ -100,7 +100,7 @@ namespace Mix.Cms.Lib.ViewModels.MixAttributeSetValues
 
         #region Overrides
 
-        public override MixAttributeSetValue ParseModel(MixCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override MixDatabaseValue ParseModel(MixCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             if (string.IsNullOrEmpty(Id))
             {

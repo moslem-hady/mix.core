@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 namespace Mix.Cms.Lib.ViewModels.MixAttributeSets
 {
     public class DeleteViewModel
-      : ViewModelBase<MixCmsContext, MixAttributeSet, DeleteViewModel>
+      : ViewModelBase<MixCmsContext, MixDatabase, DeleteViewModel>
     {
         #region Properties
 
@@ -29,7 +29,7 @@ namespace Mix.Cms.Lib.ViewModels.MixAttributeSets
         {
         }
 
-        public DeleteViewModel(MixAttributeSet model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        public DeleteViewModel(MixDatabase model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
 

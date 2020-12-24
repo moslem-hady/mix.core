@@ -20,7 +20,7 @@ namespace Mix.Cms.Api.RestFul.Controllers.v1
 {
     [Route("api/v1/rest/{culture}/attribute-set-data/portal")]
     public class AttributeSetDataPortalController :
-        BaseRestApiController<MixCmsContext, MixAttributeSetData, FormPortalViewModel, FormPortalViewModel, FormPortalViewModel>
+        BaseRestApiController<MixCmsContext, MixDatabaseData, FormPortalViewModel, FormPortalViewModel, FormPortalViewModel>
     {
         // GET: api/v1/rest/{culture}/attribute-set-data
         [HttpGet]
@@ -181,7 +181,7 @@ namespace Mix.Cms.Api.RestFul.Controllers.v1
 
         // DELETE: api/v1/rest/en-us/attribute-set/portal/5
         [HttpDelete("{id}")]
-        public override async Task<ActionResult<MixAttributeSetData>> Delete(string id)
+        public override async Task<ActionResult<MixDatabaseData>> Delete(string id)
         {
             var result = await DeleteAsync<DeleteViewModel>(id, true);
             if (result.IsSucceed)

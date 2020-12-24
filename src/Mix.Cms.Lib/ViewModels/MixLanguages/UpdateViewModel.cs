@@ -17,7 +17,7 @@ using static Mix.Cms.Lib.MixEnums;
 
 namespace Mix.Cms.Lib.ViewModels.MixLanguages
 {
-    public class UpdateViewModel : ViewModelBase<MixCmsContext, MixLanguage, UpdateViewModel>
+    public class UpdateViewModel : ViewModelBase<MixCmsContext, MixLocalize, UpdateViewModel>
     {
         #region Properties
 
@@ -83,7 +83,7 @@ namespace Mix.Cms.Lib.ViewModels.MixLanguages
         {
         }
 
-        public UpdateViewModel(MixLanguage model, MixCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public UpdateViewModel(MixLocalize model, MixCmsContext _context = null, IDbContextTransaction _transaction = null)
             : base(model, _context, _transaction)
         {
         }
@@ -92,7 +92,7 @@ namespace Mix.Cms.Lib.ViewModels.MixLanguages
 
         #region Overrides
 
-        public override MixLanguage ParseModel(MixCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override MixLocalize ParseModel(MixCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             if (Id == 0)
             {
@@ -155,7 +155,7 @@ namespace Mix.Cms.Lib.ViewModels.MixLanguages
             return result;
         }
 
-        public override async Task<RepositoryResponse<MixLanguage>> RemoveModelAsync(bool isRemoveRelatedModels = false, MixCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override async Task<RepositoryResponse<MixLocalize>> RemoveModelAsync(bool isRemoveRelatedModels = false, MixCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var result = await base.RemoveModelAsync(isRemoveRelatedModels, _context, _transaction);
             if (result.IsSucceed)
@@ -209,7 +209,7 @@ namespace Mix.Cms.Lib.ViewModels.MixLanguages
         #endregion Overrides
 
         #region Expand
-        public static async Task<RepositoryResponse<bool>> ImportLanguages(List<MixLanguage> arrLanguage, string destCulture
+        public static async Task<RepositoryResponse<bool>> ImportLanguages(List<MixLocalize> arrLanguage, string destCulture
             , MixCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };

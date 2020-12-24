@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Mix.Cms.Lib.ViewModels.MixAttributeFields
 {
     public class DeleteViewModel
-      : ViewModelBase<MixCmsContext, MixAttributeField, DeleteViewModel>
+      : ViewModelBase<MixCmsContext, MixDatabaseColumn, DeleteViewModel>
     {
         #region Properties
 
@@ -74,7 +74,7 @@ namespace Mix.Cms.Lib.ViewModels.MixAttributeFields
         {
         }
 
-        public DeleteViewModel(MixAttributeField model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        public DeleteViewModel(MixDatabaseColumn model, MixCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
 

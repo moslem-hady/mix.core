@@ -172,11 +172,11 @@ namespace Mix.Cms.Lib.ViewModels.MixPosts
                     }
                 };
                 // Get Data                
-                Expression<Func<MixAttributeSetValue, bool>> predicate = m => m.Specificulture == culture
+                Expression<Func<MixDatabaseValue, bool>> predicate = m => m.Specificulture == culture
                    && m.Status == MixEnums.MixContentStatus.Published;
                 foreach (var item in valueIds)
                 {
-                    Expression<Func<MixAttributeSetValue, bool>> pre = m => m.Id == item;
+                    Expression<Func<MixDatabaseValue, bool>> pre = m => m.Id == item;
 
                     predicate = ReflectionHelper.CombineExpression(
                         predicate

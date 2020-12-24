@@ -208,7 +208,7 @@ namespace Mix.Cms.Lib.Services
         /// <param name="_context"></param>
         /// <param name="_transaction"></param>
         /// <returns></returns>
-        public async Task<RepositoryResponse<bool>> InitLanguagesAsync(string specificulture, List<MixLanguage> languages
+        public async Task<RepositoryResponse<bool>> InitLanguagesAsync(string specificulture, List<MixLocalize> languages
             , MixCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             /* Init Languages */
