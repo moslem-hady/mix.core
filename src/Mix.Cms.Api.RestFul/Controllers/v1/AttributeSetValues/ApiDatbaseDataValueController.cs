@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Mix.Cms.Lib;
 using Mix.Cms.Lib.Controllers;
 using Mix.Cms.Lib.Models.Cms;
-using Mix.Cms.Lib.ViewModels.MixLanguages;
+using Mix.Cms.Lib.ViewModels.MixAttributeSetValues;
 using Mix.Domain.Core.ViewModels;
 using System;
 using System.Linq.Expressions;
@@ -15,33 +15,31 @@ using System.Threading.Tasks;
 namespace Mix.Cms.Api.RestFul.Controllers.v1
 {
     [Produces("application/json")]
-    [Route("api/v1/rest/{culture}/language")]
-    public class ApiLanguageController :
-        BaseRestApiController<MixCmsContext, MixLocalize, UpdateViewModel, ReadMvcViewModel, UpdateViewModel>
+    [Route("api/v1/rest/{culture}/attribute-set-value/portal")]
+    public class ApiDatbaseDataValueController :
+        BaseRestApiController<MixCmsContext, MixDatabaseValue, UpdateViewModel, ReadViewModel>
     {
 
-        // GET: api/s
+        // GET: api/v1/rest/en-us/attribute-field/client
         [HttpGet]
-        public override async Task<ActionResult<PaginationModel<ReadMvcViewModel>>> Get()
+        public override async Task<ActionResult<PaginationModel<ReadViewModel>>> Get()
         {
             bool isStatus = Enum.TryParse(Request.Query["status"], out MixEnums.MixContentStatus status);
             bool isFromDate = DateTime.TryParse(Request.Query["fromDate"], out DateTime fromDate);
             bool isToDate = DateTime.TryParse(Request.Query["toDate"], out DateTime toDate);
             string keyword = Request.Query["keyword"];
-            Expression<Func<MixLocalize, bool>> predicate = model =>
-                model.Specificulture == _lang
-                && (!isStatus || model.Status == status)
+            Expression<Func<MixDatabaseValue, bool>> predicate = model =>
+                (!isStatus || model.Status == status)
                 && (!isFromDate || model.CreatedDateTime >= fromDate)
                 && (!isToDate || model.CreatedDateTime <= toDate)
                 && (string.IsNullOrEmpty(keyword)
-                 || model.Keyword.Contains(keyword)
-                 || model.Value.Contains(keyword)
-                 || model.DefaultValue.Contains(keyword)
+                 || model.AttributeSetName.Contains(keyword)
+                 || model.StringValue.Contains(keyword)
                  );
-            var getData = await base.GetListAsync<ReadMvcViewModel>(predicate);
+            var getData = await base.GetListAsync(predicate);
             if (getData.IsSucceed)
             {
-                return getData.Data;
+                return Ok(getData.Data);
             }
             else
             {

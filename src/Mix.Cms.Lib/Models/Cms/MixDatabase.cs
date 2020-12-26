@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace Mix.Cms.Lib.Models.Cms
 {
-    public partial class MixAttributeSet
+    public partial class MixDatabase
     {
-        public MixAttributeSet()
+        public MixDatabase()
         {
-            MixAttributeFieldAttributeSet = new HashSet<MixAttributeField>();
-            MixAttributeFieldReference = new HashSet<MixAttributeField>();
-            MixAttributeSetData = new HashSet<MixAttributeSetData>();
-            MixAttributeSetReference = new HashSet<MixAttributeSetReference>();
+            MixAttributeFieldAttributeSet = new HashSet<MixDatabaseColumn>();
+            MixAttributeFieldReference = new HashSet<MixDatabaseColumn>();
+            MixAttributeSetData = new HashSet<MixDatabaseData>();
+            MixAttributeSetReference = new HashSet<MixDatabaseRelationship>();
             MixRelatedAttributeSet = new HashSet<MixRelatedAttributeSet>();
         }
 
@@ -31,10 +31,10 @@ namespace Mix.Cms.Lib.Models.Cms
         public int Priority { get; set; }
         public MixEnums.MixContentStatus Status { get; set; }
 
-        public virtual ICollection<MixAttributeField> MixAttributeFieldAttributeSet { get; set; }
-        public virtual ICollection<MixAttributeField> MixAttributeFieldReference { get; set; }
-        public virtual ICollection<MixAttributeSetData> MixAttributeSetData { get; set; }
-        public virtual ICollection<MixAttributeSetReference> MixAttributeSetReference { get; set; }
+        public virtual ICollection<MixDatabaseColumn> MixAttributeFieldAttributeSet { get; set; }
+        public virtual ICollection<MixDatabaseColumn> MixAttributeFieldReference { get; set; }
+        public virtual ICollection<MixDatabaseData> MixAttributeSetData { get; set; }
+        public virtual ICollection<MixDatabaseRelationship> MixAttributeSetReference { get; set; }
         public virtual ICollection<MixRelatedAttributeSet> MixRelatedAttributeSet { get; set; }
     }
 }

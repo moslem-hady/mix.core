@@ -105,7 +105,7 @@ namespace Mix.Cms.Lib.ViewModels.MixAttributeSetDatas
                 if (val == null)
                 {
                     val = new MixAttributeSetValues.UpdateViewModel(
-                        new MixAttributeSetValue() { AttributeFieldId = field.Id }
+                        new MixDatabaseValue() { AttributeFieldId = field.Id }
                         , _context, _transaction)
                     {
                         Field = field,

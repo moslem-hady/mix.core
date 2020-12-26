@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Mix.Cms.Lib.Models.Cms
 {
-    public partial class MixAttributeSetReference
+    public partial class MixDatabaseRelationship
     {
         public int Id { get; set; }
         public int ParentId { get; set; }

@@ -8,58 +8,57 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Mix.Cms.Lib;
-using Mix.Cms.Lib.Attributes;
 using Mix.Cms.Lib.Models.Cms;
 using Mix.Cms.Lib.Services;
-using Mix.Cms.Lib.ViewModels.MixAttributeFields;
+using Mix.Cms.Lib.ViewModels.MixAttributeSets;
 using Mix.Domain.Core.ViewModels;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Mix.Cms.Api.Controllers.v1
 {
     [Produces("application/json")]
-    [Route("api/v1/{culture}/attribute-field")]
-    public class ApiAttributeFieldController :
-        BaseGenericApiController<MixCmsContext, MixDatabaseColumn>
+    [Route("api/v1/{culture}/attribute-set")]
+    public class ApiDatabaseController :
+        BaseGenericApiController<MixCmsContext, MixDatabase>
     {
-        public ApiAttributeFieldController(MixCmsContext context, IMemoryCache memoryCache, Microsoft.AspNetCore.SignalR.IHubContext<Mix.Cms.Service.SignalR.Hubs.PortalHub> hubContext) : base(context, memoryCache, hubContext)
+        public ApiDatabaseController(MixCmsContext context, IMemoryCache memoryCache, Microsoft.AspNetCore.SignalR.IHubContext<Mix.Cms.Service.SignalR.Hubs.PortalHub> hubContext) : base(context, memoryCache, hubContext)
         {
         }
 
         #region Get
 
-        // GET api/attribute-field/id
+        // GET api/attribute-set/id
         [HttpGet, HttpOptions]
         [Route("delete/{id}")]
-        public async Task<RepositoryResponse<MixDatabaseColumn>> DeleteAsync(int id)
+        public async Task<RepositoryResponse<MixDatabase>> DeleteAsync(int id)
         {
-            return await base.DeleteAsync<UpdateViewModel>(
+            return await base.DeleteAsync<DeleteViewModel>(
                 model => model.Id == id, true);
         }
 
-        // GET api/attribute-fields/id
+        // GET api/attribute-sets/id
         [HttpGet, HttpOptions]
         [Route("details/{id}/{viewType}")]
+        [Route("details/{name}/{viewType}")]
         [Route("details/{viewType}")]
-        public async Task<ActionResult<JObject>> Details(string viewType, int? id)
+        public async Task<ActionResult<JObject>> Details(string viewType, string name, int? id)
         {
             string msg = string.Empty;
             switch (viewType)
             {
                 case "portal":
-                    if (id.HasValue)
+                    if (id.HasValue || !string.IsNullOrEmpty(name))
                     {
-                        Expression<Func<MixDatabaseColumn, bool>> predicate = model => model.Id == id;
+                        Expression<Func<MixDatabase, bool>> predicate = model => (model.Id == id || model.Name == name);
                         var portalResult = await base.GetSingleAsync<UpdateViewModel>($"{viewType}_{id}", predicate);
                         return Ok(JObject.FromObject(portalResult));
                     }
                     else
                     {
-                        var model = new MixDatabaseColumn()
+                        var model = new MixDatabase()
                         {
                             Status = MixService.GetConfig<MixEnums.MixContentStatus>(MixConstants.ConfigurationKeyword.DefaultContentStatus)
                             ,
@@ -70,15 +69,15 @@ namespace Mix.Cms.Api.Controllers.v1
                         return Ok(JObject.FromObject(result));
                     }
                 default:
-                    if (id.HasValue)
+                    if (id.HasValue || !string.IsNullOrEmpty(name))
                     {
-                        Expression<Func<MixDatabaseColumn, bool>> predicate = model => model.Id == id;
+                        Expression<Func<MixDatabase, bool>> predicate = model => model.Id == id || model.Name == name;
                         var result = await base.GetSingleAsync<ReadViewModel>($"{viewType}_{id}", predicate);
                         return Ok(JObject.FromObject(result));
                     }
                     else
                     {
-                        var model = new MixDatabaseColumn()
+                        var model = new MixDatabase()
                         {
                             Status = MixService.GetConfig<MixEnums.MixContentStatus>(MixConstants.ConfigurationKeyword.DefaultContentStatus)
                             ,
@@ -91,26 +90,15 @@ namespace Mix.Cms.Api.Controllers.v1
             }
         }
 
-        // GET api/module-data/create/id
-        [AllowAnonymous]
-        [HttpGet, HttpOptions]
-        [Route("init-form/{setId}")]
-        public async Task<RepositoryResponse<List<UpdateViewModel>>> InitByName(int setId)
-        {
-            return await UpdateViewModel.Repository.GetModelListByAsync(
-                m => m.AttributeSetId == setId).ConfigureAwait(false);
-        }
-
         #endregion Get
 
         #region Post
 
-        // POST api/attribute-field
+        // POST api/attribute-set
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin, Admin")]
         [HttpPost, HttpOptions]
-        [RequestFormSizeLimit(valueCountLimit: 214748364)] // 200Mb
         [Route("save")]
-        public async Task<RepositoryResponse<UpdateViewModel>> Save(UpdateViewModel data)
+        public async Task<RepositoryResponse<UpdateViewModel>> Save([FromBody] UpdateViewModel data)
         {
             if (data != null)
             {
@@ -126,17 +114,25 @@ namespace Mix.Cms.Api.Controllers.v1
             return new RepositoryResponse<UpdateViewModel>() { Status = 501 };
         }
 
-        // GET api/attribute-field
+        // GET api/attribute-set
         [HttpPost, HttpOptions]
         [Route("list")]
         public async Task<ActionResult<JObject>> GetList(
             [FromBody] RequestPaging request)
         {
             ParseRequestPagingDate(request);
-            Expression<Func<MixDatabaseColumn, bool>> predicate = model =>
+            Expression<Func<MixDatabase, bool>> predicate = model =>
                 (string.IsNullOrWhiteSpace(request.Keyword)
                     || (EF.Functions.Like(model.Name, $"%{request.Keyword}%"))
-                    );
+                    || (EF.Functions.Like(model.Title, $"%{request.Keyword}%"))
+                    )
+                && (!request.FromDate.HasValue
+                    || (model.CreatedDateTime >= request.FromDate.Value)
+                )
+                && (!request.ToDate.HasValue
+                    || (model.CreatedDateTime <= request.ToDate.Value)
+                )
+                    ;
             switch (request.Key)
             {
                 case "portal":

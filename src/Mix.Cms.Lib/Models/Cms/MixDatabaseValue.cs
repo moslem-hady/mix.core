@@ -4,7 +4,7 @@ using static Mix.Cms.Lib.MixEnums;
 
 namespace Mix.Cms.Lib.Models.Cms
 {
-    public partial class MixAttributeSetValue
+    public partial class MixDatabaseValue
     {
         public string Id { get; set; }
         public string Specificulture { get; set; }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Mix.Cms.Lib.Models.Cms
 {
-    public partial class MixAttributeField
+    public partial class MixDatabaseColumn
     {
         public int Id { get; set; }
         public int AttributeSetId { get; set; }

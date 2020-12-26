@@ -35,7 +35,7 @@
   <ItemGroup>
     <Compile Include="Controllers\v1\AttributeSetDatas\ApiAttributeSetDataController.cs" />
     <Compile Include="Controllers\v1\AttributeSetDatas\AttributeSetDataMvcController.cs" />
-    <Compile Include="Controllers\v1\AttributeSetDatas\AttributeSetDataPortalController.cs" />
+    <Compile Include="Controllers\v1\AttributeSetDatas\MixDatabaseDataPortalController.cs" />
   </ItemGroup>
 
   <ItemGroup>

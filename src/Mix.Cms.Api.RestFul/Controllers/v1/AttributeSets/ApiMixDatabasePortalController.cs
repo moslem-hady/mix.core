@@ -19,7 +19,7 @@ namespace Mix.Cms.Api.RestFul.Controllers.v1
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Produces("application/json")]
     [Route("api/v1/rest/attribute-set/portal")]
-    public class ApiAttributeSetPortalController :
+    public class ApiMixDatabasePortalController :
         BaseRestApiController<MixCmsContext, MixDatabase, UpdateViewModel, ReadViewModel, UpdateViewModel>
     {
 

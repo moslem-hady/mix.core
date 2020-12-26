@@ -132,7 +132,7 @@ namespace Mix.Cms.Lib.ViewModels.MixAttributeSetDatas
                 if (val == null)
                 {
                     val = new MixAttributeSetValues.UpdateViewModel(
-                        new MixAttributeSetValue()
+                        new MixDatabaseValue()
                         {
                             AttributeFieldId = field.Id,
                             AttributeFieldName = field.Name,
@@ -572,14 +572,14 @@ namespace Mix.Cms.Lib.ViewModels.MixAttributeSetDatas
             UnitOfWorkHelper<MixCmsContext>.InitTransaction(_context, _transaction, out MixCmsContext context, out IDbContextTransaction transaction, out bool isRoot);
             try
             {
-                Expression<Func<MixAttributeSetValue, bool>> valPredicate = m => m.Specificulture == culture;
+                Expression<Func<MixDatabaseValue, bool>> valPredicate = m => m.Specificulture == culture;
                 List<FormViewModel> result = new List<FormViewModel>();
                 foreach (var q in queryDictionary)
                 {
-                    Expression<Func<MixAttributeSetValue, bool>> pre = m =>
+                    Expression<Func<MixDatabaseValue, bool>> pre = m =>
                     m.Specificulture == culture && m.AttributeSetName == attributeSetName
                     && m.AttributeFieldName == q.Key && m.StringValue.Contains(q.Value);
-                    valPredicate = ODataHelper<MixAttributeSetValue>.CombineExpression(valPredicate, pre, Microsoft.OData.UriParser.BinaryOperatorKind.And);
+                    valPredicate = ODataHelper<MixDatabaseValue>.CombineExpression(valPredicate, pre, Microsoft.OData.UriParser.BinaryOperatorKind.And);
                 }
                 var query = context.MixAttributeSetValue.Where(valPredicate);
                 var data = context.MixAttributeSetData.Where(m => query.Any(q => q.DataId == m.Id) && m.Specificulture == culture);
@@ -622,7 +622,7 @@ namespace Mix.Cms.Lib.ViewModels.MixAttributeSetDatas
                     if (val == null)
                     {
                         val = new MixAttributeSetValues.UpdateViewModel(
-                            new MixAttributeSetValue()
+                            new MixDatabaseValue()
                             {
                                 AttributeFieldId = field.Id,
                                 AttributeFieldName = field.Name,

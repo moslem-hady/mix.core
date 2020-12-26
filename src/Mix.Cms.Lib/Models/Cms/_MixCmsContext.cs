@@ -8,17 +8,17 @@ namespace Mix.Cms.Lib.Models.Cms
 {
     public partial class MixCmsContext : DbContext
     {
-        public virtual DbSet<MixAttributeField> MixAttributeField { get; set; }
+        public virtual DbSet<MixDatabaseColumn> MixAttributeField { get; set; }
         public virtual DbSet<MixDatabase> MixAttributeSet { get; set; }
-        public virtual DbSet<MixAttributeSetData> MixAttributeSetData { get; set; }
-        public virtual DbSet<MixAttributeSetReference> MixAttributeSetReference { get; set; }
-        public virtual DbSet<MixAttributeSetValue> MixAttributeSetValue { get; set; }
+        public virtual DbSet<MixDatabaseData> MixAttributeSetData { get; set; }
+        public virtual DbSet<MixDatabaseRelationship> MixAttributeSetReference { get; set; }
+        public virtual DbSet<MixDatabaseValue> MixAttributeSetValue { get; set; }
         public virtual DbSet<MixCache> MixCache { get; set; }
-        public virtual DbSet<MixCmsUser> MixCmsUser { get; set; }
+        public virtual DbSet<MixUser> MixCmsUser { get; set; }
         public virtual DbSet<MixConfiguration> MixConfiguration { get; set; }
-        public virtual DbSet<MixCulture> MixCulture { get; set; }
+        public virtual DbSet<MixLanguage> MixCulture { get; set; }
         public virtual DbSet<MixFile> MixFile { get; set; }
-        public virtual DbSet<MixLanguage> MixLanguage { get; set; }
+        public virtual DbSet<MixLocalize> MixLanguage { get; set; }
         public virtual DbSet<MixMedia> MixMedia { get; set; }
         public virtual DbSet<MixModule> MixModule { get; set; }
         public virtual DbSet<MixModuleData> MixModuleData { get; set; }
@@ -97,7 +97,7 @@ namespace Mix.Cms.Lib.Models.Cms
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<MixAttributeField>(entity =>
+            modelBuilder.Entity<MixDatabaseColumn>(entity =>
             {
                 entity.ToTable("mix_attribute_field");
 
@@ -248,7 +248,7 @@ namespace Mix.Cms.Lib.Models.Cms
                     .HasCollation("utf8_unicode_ci");
             });
 
-            modelBuilder.Entity<MixAttributeSetData>(entity =>
+            modelBuilder.Entity<MixDatabaseData>(entity =>
             {
                 entity.HasKey(e => new { e.Id, e.Specificulture })
                     .HasName("PRIMARY");
@@ -299,7 +299,7 @@ namespace Mix.Cms.Lib.Models.Cms
                     .HasConstraintName("FK_mix_attribute_set_data_mix_attribute_set");
             });
 
-            modelBuilder.Entity<MixAttributeSetReference>(entity =>
+            modelBuilder.Entity<MixDatabaseRelationship>(entity =>
             {
                 entity.ToTable("mix_attribute_set_reference");
 
@@ -342,7 +342,7 @@ namespace Mix.Cms.Lib.Models.Cms
                     .HasConstraintName("FK_mix_attribute_set_reference_mix_attribute_set");
             });
 
-            modelBuilder.Entity<MixAttributeSetValue>(entity =>
+            modelBuilder.Entity<MixDatabaseValue>(entity =>
             {
                 entity.ToTable("mix_attribute_set_value");
 
@@ -462,7 +462,7 @@ namespace Mix.Cms.Lib.Models.Cms
                     .HasCollation("utf8_unicode_ci");
             });
 
-            modelBuilder.Entity<MixCmsUser>(entity =>
+            modelBuilder.Entity<MixUser>(entity =>
             {
                 entity.ToTable("mix_cms_user");
 
@@ -600,7 +600,7 @@ namespace Mix.Cms.Lib.Models.Cms
                     .HasConstraintName("FK_Mix_Configuration_Mix_Culture");
             });
 
-            modelBuilder.Entity<MixCulture>(entity =>
+            modelBuilder.Entity<MixLanguage>(entity =>
             {
                 entity.ToTable("mix_culture");
 
@@ -729,7 +729,7 @@ namespace Mix.Cms.Lib.Models.Cms
                     .HasConstraintName("FK_mix_file_mix_template");
             });
 
-            modelBuilder.Entity<MixLanguage>(entity =>
+            modelBuilder.Entity<MixLocalize>(entity =>
             {
                 entity.HasKey(e => new { e.Id, e.Specificulture })
                     .HasName("PRIMARY");
@@ -796,7 +796,7 @@ namespace Mix.Cms.Lib.Models.Cms
                     .HasCollation("utf8_unicode_ci");
 
                 entity.HasOne(d => d.SpecificultureNavigation)
-                    .WithMany(p => p.MixLanguage)
+                    .WithMany(p => p.MixLocalize)
                     .HasPrincipalKey(p => p.Specificulture)
                     .HasForeignKey(d => d.Specificulture)
                     .HasConstraintName("FK_Mix_Language_Mix_Culture");

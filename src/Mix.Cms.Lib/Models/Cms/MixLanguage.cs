@@ -8,7 +8,7 @@ namespace Mix.Cms.Lib.Models.Cms
         public MixLanguage()
         {
             MixConfiguration = new HashSet<MixConfiguration>();
-            MixLanguage = new HashSet<MixLocalize>();
+            MixLocalize = new HashSet<MixLocalize>();
             MixModule = new HashSet<MixModule>();
             MixPage = new HashSet<MixPage>();
             MixPost = new HashSet<MixPost>();
@@ -30,7 +30,7 @@ namespace Mix.Cms.Lib.Models.Cms
         public MixEnums.MixContentStatus Status { get; set; }
 
         public virtual ICollection<MixConfiguration> MixConfiguration { get; set; }
-        public virtual ICollection<MixLocalize> MixLanguage { get; set; }
+        public virtual ICollection<MixLocalize> MixLocalize { get; set; }
         public virtual ICollection<MixModule> MixModule { get; set; }
         public virtual ICollection<MixPage> MixPage { get; set; }
         public virtual ICollection<MixPost> MixPost { get; set; }

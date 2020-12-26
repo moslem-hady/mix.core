@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 namespace Mix.Cms.Api.RestFul.Controllers.v1
 {
     [Route("api/v1/rest/{culture}/attribute-set-data/portal")]
-    public class AttributeSetDataPortalController :
+    public class MixDatabaseDataPortalController :
         BaseRestApiController<MixCmsContext, MixDatabaseData, FormPortalViewModel, FormPortalViewModel, FormPortalViewModel>
     {
         // GET: api/v1/rest/{culture}/attribute-set-data

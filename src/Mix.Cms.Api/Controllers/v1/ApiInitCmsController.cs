@@ -188,7 +188,7 @@ namespace Mix.Cms.Api.Controllers.v1
         /// <returns></returns>
         [HttpPost, HttpOptions]
         [Route("init-cms/step-4")]
-        public async Task<RepositoryResponse<bool>> InitLanguages([FromBody] List<MixLocalize> model)
+        public async Task<RepositoryResponse<bool>> InitLocalizes([FromBody] List<MixLocalize> model)
         {
             if (model != null)
             {

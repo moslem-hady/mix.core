@@ -16,7 +16,7 @@ namespace Mix.Cms.Lib.Models.Cms
             // Auto apply configuration by convention.
             modelBuilder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
 
-            modelBuilder.Entity<MixAttributeField>(entity =>
+            modelBuilder.Entity<MixDatabaseColumn>(entity =>
             {
                 entity.ToTable("mix_attribute_field");
 
@@ -114,7 +114,7 @@ namespace Mix.Cms.Lib.Models.Cms
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<MixAttributeSetData>(entity =>
+            modelBuilder.Entity<MixDatabaseData>(entity =>
             {
                 entity.HasKey(e => new { e.Id, e.Specificulture });
 
@@ -151,7 +151,7 @@ namespace Mix.Cms.Lib.Models.Cms
                     .HasConstraintName("FK_mix_attribute_set_data_mix_attribute_set");
             });
 
-            modelBuilder.Entity<MixAttributeSetReference>(entity =>
+            modelBuilder.Entity<MixDatabaseRelationship>(entity =>
             {
                 entity.ToTable("mix_attribute_set_reference");
 
@@ -186,7 +186,7 @@ namespace Mix.Cms.Lib.Models.Cms
                     .HasConstraintName("FK_mix_attribute_set_reference_mix_attribute_set");
             });
 
-            modelBuilder.Entity<MixAttributeSetValue>(entity =>
+            modelBuilder.Entity<MixDatabaseValue>(entity =>
             {
                 entity.ToTable("mix_attribute_set_value");
 
@@ -266,7 +266,7 @@ namespace Mix.Cms.Lib.Models.Cms
                     .HasMaxLength(4000);
             });
 
-            modelBuilder.Entity<MixCmsUser>(entity =>
+            modelBuilder.Entity<MixUser>(entity =>
             {
                 entity.ToTable("mix_cms_user");
 
@@ -355,7 +355,7 @@ namespace Mix.Cms.Lib.Models.Cms
                     .HasConstraintName("FK_Mix_Configuration_Mix_Culture");
             });
 
-            modelBuilder.Entity<MixCulture>(entity =>
+            modelBuilder.Entity<MixLanguage>(entity =>
             {
                 entity.ToTable("mix_culture");
 
@@ -452,7 +452,7 @@ namespace Mix.Cms.Lib.Models.Cms
                     .HasConstraintName("FK_mix_file_mix_template");
             });
 
-            modelBuilder.Entity<MixLanguage>(entity =>
+            modelBuilder.Entity<MixLocalize>(entity =>
             {
                 entity.HasKey(e => new { e.Id, e.Specificulture })
                     .HasName("PK_mix_language_1");
@@ -497,7 +497,7 @@ namespace Mix.Cms.Lib.Models.Cms
                 entity.Property(e => e.Value).HasMaxLength(4000);
 
                 entity.HasOne(d => d.SpecificultureNavigation)
-                    .WithMany(p => p.MixLanguage)
+                    .WithMany(p => p.MixLocalize)
                     .HasPrincipalKey(p => p.Specificulture)
                     .HasForeignKey(d => d.Specificulture)
                     .HasConstraintName("FK_Mix_Language_Mix_Culture");

@@ -601,6 +601,11 @@ namespace Mix.Cms.Service.SignalR.ViewModels.MixAttributeSetDatas
             }
         }
 
+        protected FormViewModel(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion Expands
     }
 }

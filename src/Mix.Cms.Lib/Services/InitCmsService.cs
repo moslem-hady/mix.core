@@ -261,7 +261,7 @@ namespace Mix.Cms.Lib.Services
                 {
                     // EN-US
 
-                    var enCulture = new MixCulture()
+                    var enCulture = new MixLanguage()
                     {
                         Id = 1,
                         Specificulture = culture.Specificulture,

@@ -3,7 +3,7 @@ using static Mix.Cms.Lib.MixEnums;
 
 namespace Mix.Cms.Lib.Models.Cms
 {
-    public partial class MixLanguage
+    public partial class MixLocalize
     {
         public int Id { get; set; }
         public string Specificulture { get; set; }
@@ -20,6 +20,6 @@ namespace Mix.Cms.Lib.Models.Cms
         public int Priority { get; set; }
         public MixEnums.MixContentStatus Status { get; set; }
 
-        public virtual MixCulture SpecificultureNavigation { get; set; }
+        public virtual MixLanguage SpecificultureNavigation { get; set; }
     }
 }

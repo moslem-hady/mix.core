@@ -16,7 +16,7 @@ namespace Mix.Cms.Api.RestFul.Controllers.v1
 {
     [Produces("application/json")]
     [Route("api/v1/rest/attribute-field/portal")]
-    public class ApiAttributeFieldController :
+    public class ApiDatabaseColumnController :
         BaseRestApiController<MixCmsContext, MixDatabaseColumn, UpdateViewModel, ReadViewModel, DeleteViewModel>
     {
 
